@@ -34,7 +34,6 @@ export async function updatePost(req: Request, res: Response) {
   const { title, description, image_url } = req.body;
   const { postID } = req.params;
   const conn = await connect();
-  const post = await conn.query("UPDATE posts SET title = ?, description = ? , image_url = ? WHERE id = ?",[title,description, image_url, postID]
-  );
+  const post = await conn.query("UPDATE posts SET title = ?, description = ? , image_url = ? WHERE id = ?",[title,description, image_url, postID]);
   return res.json(post);
 }
