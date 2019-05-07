@@ -31,9 +31,9 @@ export async function deletePost(req: Request, res: Response) {
 }
 
 export async function updatePost(req: Request, res: Response) {
-  const { title, description, image_url } = req.body;
+  const updatePost: Post = req.body;
   const { postID } = req.params;
   const conn = await connect();
-  const post = await conn.query("UPDATE posts SET title = ?, description = ? , image_url = ? WHERE id = ?",[title,description, image_url, postID]);
+  const post = await conn.query("UPDATE posts SET ? WHERE id = ?", [updatePost, postID]);
   return res.json(post);
 }
